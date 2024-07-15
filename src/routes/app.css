@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --bg: 235, 235, 235;
+    --txt_color: 0, 0, 0;
+    --icons: 135, 135, 135;
+    --bg_gradient: 255, 255, 255;
+    --select: 217, 217, 207;
+    --border_color: 0, 0, 0, 1;
+  }
+  
+  .dark {
+    --bg: 8, 49, 79;
+    --txt_color: 255, 255, 255;
+    --icons: 135, 135, 135;
+    --bg_gradient: 0, 0, 0;
+    --select: 15, 23, 32;
+    --border_color: 0,0,0,1;
+  }
+  
+  body {
+    background-color: rgba(var(--bg), 1);
+    color: rgba(var(--txt_color), 1);
+  }
+
+html{
+    scroll-behavior: smooth;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1,h2,h3{
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.poppins{
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.bg-main{
+    background-image: url(../assets/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
