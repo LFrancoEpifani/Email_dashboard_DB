@@ -4,8 +4,13 @@ import cors from 'cors';
 import { PORT, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } from './config.js';
 
 const app = express();
-app.use(cors());
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://email-dashboard-up.vercel.app/"); // Cambia "*" por tu dominio si es necesario
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+ 
 const pool = createPool({
     user: DB_USER,
     password: DB_PASSWORD,
