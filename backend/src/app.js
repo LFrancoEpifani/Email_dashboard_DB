@@ -4,7 +4,14 @@ import cors from 'cors';
 import { PORT, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } from './config.js';
 
 const app = express();
-app.use(cors());
+
+// Configurar CORS para permitir solicitudes desde tu dominio de Vercel
+const corsOptions = {
+    origin: 'https://email-dashboard-up.vercel.app/', // Cambia esto por la URL de tu frontend en Vercel
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 const pool = createPool({
     user: DB_USER,
