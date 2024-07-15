@@ -1,18 +1,12 @@
+// app.js
+import 'dotenv/config';  // Añade esta línea al inicio del archivo
 import express from 'express';
-import { createPool } from 'mysql2/promise';
 import cors from 'cors';
-import { PORT, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } from './config.js';
+import { pool } from './db.js';
+import { PORT } from './config.js';
 
 const app = express();
 app.use(cors());
-
-const pool = createPool({
-    user: DB_USER,
-    password: DB_PASSWORD,
-    host: DB_HOST,
-    port: DB_PORT,
-    database: DB_NAME
-});
 
 app.get('/emails', async (req, res) => {
     try {
