@@ -1,18 +1,18 @@
 import express from 'express';
 import { createPool } from 'mysql2/promise';
-import cors from 'cors'
+import cors from 'cors';
+import { PORT, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } from './config.js';
 
 const app = express();
-
-app.use(cors())
+app.use(cors());
 
 const pool = createPool({
-    user: 'root',
-    password: 'admin',
-    host: 'localhost',
-    port: 3306,
-    database: 'dashboard'
-})
+    user: DB_USER,
+    password: DB_PASSWORD,
+    host: DB_HOST,
+    port: DB_PORT,
+    database: DB_NAME
+});
 
 app.get('/emails', async (req, res) => {
     try {
@@ -26,7 +26,6 @@ app.get('/emails', async (req, res) => {
     }
 });
 
-// Iniciar el servidor
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
