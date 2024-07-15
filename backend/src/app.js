@@ -1,12 +1,19 @@
-// app.js
-import 'dotenv/config';  // Añade esta línea al inicio del archivo
 import express from 'express';
-import cors from 'cors';
-import { pool } from './db.js';
-import { PORT } from './config.js';
+import { createPool } from 'mysql2/promise';
+import cors from 'cors'
+import { PORT } from './config.JS';
 
 const app = express();
-app.use(cors());
+
+app.use(cors())
+
+const pool = createPool({
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME
+});
 
 app.get('/emails', async (req, res) => {
     try {
@@ -20,6 +27,7 @@ app.get('/emails', async (req, res) => {
     }
 });
 
+// Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log('Server running on port', PORT);
 });
