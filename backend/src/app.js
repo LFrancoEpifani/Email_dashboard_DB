@@ -1,9 +1,10 @@
 import express from 'express';
 import { createPool } from 'mysql2/promise';
-import cors from 'cors';
+import cors from 'cors'
 
 const app = express();
-app.use(cors());
+
+app.use(cors())
 
 const pool = createPool({
     user: 'root',
@@ -11,11 +12,13 @@ const pool = createPool({
     host: 'localhost',
     port: 3306,
     database: 'dashboard'
-});
+})
 
 app.get('/emails', async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM emails');
+        const connection = await pool.getConnection();
+        const [rows] = await connection.query('SELECT * FROM emails');
+        connection.release();
         res.json(rows);
     } catch (error) {
         console.error('Error fetching emails:', error.message);
@@ -23,6 +26,7 @@ app.get('/emails', async (req, res) => {
     }
 });
 
+// Iniciar el servidor
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });

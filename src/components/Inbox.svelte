@@ -5,6 +5,7 @@
     import Sidebar from './Sidebar.svelte';
     import Icon from '@iconify/svelte';
 
+    
     let emails = [];
     let expandedEmailId = null;
     let selectedEmail = null;
@@ -179,7 +180,7 @@
     <InboxNavbar/>
 </div>
 <style>
-    
+
     .fa-solid {
         font-family: 'Font Awesome 5 Free';
         font-weight: 900;
