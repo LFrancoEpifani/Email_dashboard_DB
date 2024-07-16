@@ -5,22 +5,10 @@ import { PORT, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } from './config.
 
 const app = express();
 
-const allowedOrigins = ['https://email-dashboard-up.vercel.app'];
+app.use(cors({
+    origin: 'https://email-dashboard-up.vercel.app'
+}));
 
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    optionsSuccessStatus: 200,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept"
-};
-
-app.use(cors(corsOptions));
 app.use(express.json());
 
 const pool = createPool({
